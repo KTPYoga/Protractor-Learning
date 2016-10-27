@@ -2,22 +2,25 @@
 // https://github.com/angular/protractor/blob/master/docs/referenceConf.js
 
 /*global jasmine */
-var SpecReporter = require('jasmine-spec-reporter');
+//var SpecReporter = require('jasmine-spec-reporter');
 
 exports.config = {
   allScriptsTimeout: 11000,
   specs: [
-    './e2e/**/*.e2e-spec.ts'
+    './e2e/**/qbankHome-spec.ts'
+ // './e2e/**/qbankHome-spec.js'
+ //'./e2e/**/javascript.check.js'
   ],
   capabilities: {
     'browserName': 'chrome'
   },
   directConnect: true,
-  baseUrl: 'http://localhost:4200/',
-  framework: 'jasmine',
+  chromeDriver: "node_modules/chromedriver/bin/chromedriver",
+ // baseUrl: 'http://localhost:4200/',
+  framework: 'jasmine2',
   jasmineNodeOpts: {
     showColors: true,
-    defaultTimeoutInterval: 30000,
+    defaultTimeoutInterval: 60000,
     print: function() {}
   },
   useAllAngular2AppRoots: true,
@@ -26,7 +29,19 @@ exports.config = {
       project: 'e2e'
     });
   },
+  plugins: [{
+        package: 'protractor-screenshoter-plugin',
+        screenshotPath:'./reports',
+        screenshotOnExpect: 'failure',
+        screenshotOnSpec: 'none',
+        withLogs: 'false',
+        writeReportFreq: 'asap',
+        clearFoldersBeforeTest: true,
+      }],  
   onPrepare: function() {
-    jasmine.getEnv().addReporter(new SpecReporter());
+     // returning the promise makes protractor wait for the reporter config before executing tests 
+        return global.browser.getProcessedConfig().then(function (config) {
+ 
+        });
   }
 };
