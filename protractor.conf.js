@@ -6,8 +6,10 @@
 
 exports.config = {
   allScriptsTimeout: 11000,
+  noResolve: false,
   specs: [
-    './e2e/**/qbankHome-spec.ts'
+     './e2e/**/channelPageTest-spec.ts'
+    //'./e2e/**/qbankHome-spec.ts'
  // './e2e/**/qbankHome-spec.js'
  //'./e2e/**/javascript.check.js'
   ],
@@ -15,7 +17,7 @@ exports.config = {
     'browserName': 'chrome'
   },
   directConnect: true,
-  chromeDriver: "node_modules/chromedriver/bin/chromedriver",
+  //chromeDriver: "node_modules/chromedriver/bin/chromedriver",
  // baseUrl: 'http://localhost:4200/',
   framework: 'jasmine2',
   jasmineNodeOpts: {
@@ -29,15 +31,15 @@ exports.config = {
       project: 'e2e'
     });
   },
-  plugins: [{
-        package: 'protractor-screenshoter-plugin',
-        screenshotPath:'./reports',
-        screenshotOnExpect: 'failure',
-        screenshotOnSpec: 'none',
-        withLogs: 'false',
-        writeReportFreq: 'asap',
-        clearFoldersBeforeTest: true,
-      }],  
+  //plugins: [{
+       // package: 'protractor-screenshoter-plugin',
+       // screenshotPath:'./reports',
+       // screenshotOnExpect: 'failure',
+       // screenshotOnSpec: 'none',
+       // withLogs: 'false',
+       // writeReportFreq: 'asap',
+       // clearFoldersBeforeTest: true,
+     // }],  
   onPrepare: function() {
      // returning the promise makes protractor wait for the reporter config before executing tests 
         return global.browser.getProcessedConfig().then(function (config) {
