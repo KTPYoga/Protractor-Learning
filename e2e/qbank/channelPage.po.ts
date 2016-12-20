@@ -1,6 +1,7 @@
 import { browser, element, by, protractor} from 'protractor';
 import { envConfig } from './envConfig';
 
+//TEST CONFIGURATIONS
 var config = 'feature6';
 var kec_username = 'abot';
 var kec_password = '8ufRAbRa';
@@ -9,11 +10,23 @@ let env = new envConfig();
 
 export class channelPage{
 
-    //elements
+    //ELEMENTS
     ICON = 'db-assignment-progress div.assignment__group__label span';
     AssignmenType = 'db-assignment-progress div.assignment__group__label h4';
     ProgressComplete = 'db-assignment-progress div.assignment__group__summary h5';
     TimeRemaining = this.ProgressComplete + ' span';
+    User = 'DomainUserName';
+    Password = 'DomainPassword';
+    LoginSubmit ='.btn-submit';
+    ProductCode = 'ProductCode';
+    ExternalUserID =  'ExternalUserId';
+    ClassCode = 'ClassCode';
+    SubmitBtn= '.btn-submit';
+    Email = 'email';
+    Pwd = 'password';
+    LoginBtn = '//*[@type="submit"]';
+    ContinueLink = 'homework--link';
+    Homework = '.card div p';
 
 
     getDomain(){
@@ -29,41 +42,41 @@ export class channelPage{
         browser.ignoreSynchronization = true;
         browser.get(this.getDomain()+'/login/atom/');
         browser.sleep(2000);
-        element(by.id('DomainUserName')).sendKeys(kec_username);
-        element(by.id('DomainPassword')).sendKeys(kec_password);
-        element(by.css('.btn-submit')).click();
-        element(by.id('ProductCode')).sendKeys(productConfig);
-        element(by.id('ExternalUserId')).sendKeys('hi');
-        element(by.css('.btn-submit')).click(); 
+        element(by.id(this.User)).sendKeys(kec_username);
+        element(by.id(this.Password)).sendKeys(kec_password);
+        element(by.css(this.LoginSubmit)).click();
+        element(by.id(this.ProductCode)).sendKeys(productConfig);
+        element(by.id(this.ExternalUserID)).sendKeys('hi');
+        element(by.css(this.LoginSubmit)).click(); 
         }   
 
     goToChannel(){
         browser.ignoreSynchronization = true;
-        browser.get('https://atom.kaptest.com/channel/');
+        browser.get(this.getDomain()+'/channel/');
         } 
 
     loginToDashboardViaBackDoor(classCode){
         browser.ignoreSynchronization = true;
         browser.get(this.getDomain()+'/login/atom/');
         browser.sleep(2000);
-        element(by.id('DomainUserName')).sendKeys(kec_username);
-        element(by.id('DomainPassword')).sendKeys(kec_password);
-        element(by.css('.btn-submit')).click();
-        element(by.id('ClassCode')).sendKeys(classCode);
-        element(by.id('ExternalUserId')).sendKeys('hi');
-        element(by.css('.btn-submit')).click(); 
+        element(by.id(this.User)).sendKeys(kec_username);
+        element(by.id(this.Password)).sendKeys(kec_password);
+        element(by.css(this.LoginSubmit)).click();
+        element(by.id(this.ClassCode)).sendKeys(classCode);
+        element(by.id(this.ExternalUserID)).sendKeys('hi');
+        element(by.css(this.SubmitBtn)).click(); 
         browser.get(this.getDomain()+'/dashboard/');
         browser.sleep(3000);
         } 
 
 
-    loginToDashboardViaFrontDoor(){
+    loginToDashboardViaFrontDoor(email , password){
         browser.ignoreSynchronization = true;
         browser.get('http://www.kaptest.com/login.jhtml');
         browser.sleep(2000);
-        element(by.id('email')).sendKeys('sat6@kaptest.com');
-        element(by.id('password')).sendKeys('kaptest');
-        element(by.xpath('//*[@type="submit"]')).click();
+        element(by.id(this.Email)).sendKeys(email);
+        element(by.id(this.Pwd)).sendKeys(password);
+        element(by.xpath(this.LoginBtn)).click();
         browser.sleep(2000);
         browser.get('https://www.kaptest.com/myaccount');
         browser.sleep(5000);
@@ -90,17 +103,24 @@ export class channelPage{
         });
         }
 
+    getNoHomeworkText(){
+        //browser.ignoreSynchronization = true;
+        return element (by.css(this.Homework)).getText().then(function(text){
+            return text;
+        });
+        }
+
 
     getContinueLinkAddress(){
         //browser.ignoreSynchronization = true;
-        return element (by.className('homework--link')).getAttribute('href').then(function(text){
+        return element (by.className(this.ContinueLink)).getAttribute('href').then(function(text){
             return text;
         });
         }
 
     clickContinue(){
         //browser.ignoreSynchronization = true;
-        element (by.className('homework--link')).click();
+        element (by.className(this.ContinueLink)).click();
         browser.sleep(5000);
         }
 
@@ -109,7 +129,7 @@ export class channelPage{
 
     verifyContinueLink(){
         //browser.ignoreSynchronization = true;
-          return element (by.className('homework--link')).isPresent().then(function(){
+          return element (by.className(this.ContinueLink)).isPresent().then(function(){
               console.log('Continue link visible');
               //this.clickContinue();
               return true;

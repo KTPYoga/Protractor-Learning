@@ -12,34 +12,13 @@ describe ('Dashboard Tests -', function(){
         channel = new channelPage();
     });
 
-    // afterEach(function(){
-    //     browser.close();
-    // });
-
-    // describe('verify channel page ', function(){
-
-    //     var testname= this.getFullName();
-
-
-    //     it ('should load channelPage', function(){
-    //     //browser.ignoreSynchronization = true;
-    //     console.log('------------'+testname+'------------');
-        
-    //     channel.loginToStudyPlanViaBackDoor('lifesupport');
-    //     expect (browser.getCurrentUrl()).toContain("/studyplan");
-    //     //browser.sleep(3000);
-    //     channel.goToChannel();
-    //     browser.sleep(3000);
-    //     });
-    // });  
-
     describe('verifyLastSessionHomeworkComponents', function(){
 
         var testname= this.getFullName();
 
 
         xit ('should load Dashboard', function(){
-            //browser.ignoreSynchronization = true;
+            
             console.log('------------'+testname+'------------');
             
             //Log into Kaptest and go to Dashboard for GRE
@@ -68,9 +47,8 @@ describe ('Dashboard Tests -', function(){
     describe('verifyContinueLinkWorks', function(){
 
         var testname= this.getFullName();
-        xit ('should load Dashboard', function(){
+        it ('should load Dashboard', function(){
 
-            //browser.ignoreSynchronization = true;
             console.log('------------'+testname+'------------');
             
             //Log into Kaptest and go to Dashboard for GRE
@@ -81,14 +59,14 @@ describe ('Dashboard Tests -', function(){
                 expect(text).toBe('Dashboard');
             });
 
-            browser.sleep(5000);
+            browser.sleep(2000);
             
-            //get href for continue link
+            //get href for continue link and then make sure its redirecing correctly
             channel.getContinueLinkAddress().then(function(text){
                 element (by.className('homework--link')).click();
                 browser.sleep(5000);
                 console.log (text);
-                console.log (browser.getCurrentUrl()+'==============');//
+                console.log (browser.getCurrentUrl().toString()+'==============');
                 //expect (browser.getCurrentUrl()).toBe(text);
             });
         });  
@@ -103,7 +81,10 @@ describe ('Dashboard Tests -', function(){
         xit ('tests front door login + homework as session title', function(){
             console.log('------------'+testname+'------------');
             
-            channel.loginToDashboardViaFrontDoor();
+            //front door login
+            channel.loginToDashboardViaFrontDoor('sat6@kaptest.com','kaptest');
+
+            //verifying SAT account has homework instead of after class
             channel.getSessionTitle().then(function(text){
                 expect(text).toBe('Homework');
             });
@@ -115,9 +96,8 @@ describe ('Dashboard Tests -', function(){
 
      describe('verify MCAT account', function(){
 
-    // tests front door login + homework as session title
         var testname= this.getFullName();
-        xit ('test MCAT account = after class', function(){
+        xit ('test MCAT account + after class', function(){
             console.log('------------'+testname+'------------');
             
             channel.loginToDashboardViaBackDoor('MRGL14025');
@@ -131,14 +111,14 @@ describe ('Dashboard Tests -', function(){
 
     describe('verify no homework', function(){
 
-    // tests front door login + homework as session title
         var testname= this.getFullName();
-        it ('test MCAT account = after class', function(){
+        xit ('verifies no homwork', function(){
             console.log('------------'+testname+'------------');
             
+            //Lsat account
             channel.loginToDashboardViaBackDoor('LAOTO16033');
             browser.sleep(5000);
-            element (by.css('.card div p')).getText().then(function(text){
+            channel.getNoHomeworkText().then(function(text){
                 expect(text).toBe('NO HOMEWORK YET');
             });
 
