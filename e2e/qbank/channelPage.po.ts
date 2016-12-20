@@ -2,8 +2,8 @@ import { browser, element, by, protractor} from 'protractor';
 import { envConfig } from './envConfig';
 
 var config = 'feature6';
-var kec_username = 'pchatterjee';
-var kec_password = 'Welcome2';
+var kec_username = 'abot';
+var kec_password = '8ufRAbRa';
 let env = new envConfig();
 
 
@@ -27,7 +27,7 @@ export class channelPage{
 
     loginToStudyPlanViaBackDoor(productConfig){
         browser.ignoreSynchronization = true;
-        browser.get('https://atom.kaptest.com/login/atom/');
+        browser.get(this.getDomain()+'/login/atom/');
         browser.sleep(2000);
         element(by.id('DomainUserName')).sendKeys(kec_username);
         element(by.id('DomainPassword')).sendKeys(kec_password);
