@@ -1,8 +1,10 @@
 var javascriptPage = require('./javascript.check.js');
+var test = require('npm-publish-check');
 
 describe('javascript check', function(){
    // var jPage = new javascriptPage();
     it('method overload check',function(){
+        test.printMessageJS();
      //   javascriptPage
     });
 /*

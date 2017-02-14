@@ -1,40 +1,33 @@
-import { loginPage } from './login.po';
-import { qbankHomePage } from './qbankHome.po';
-import { browser } from 'protractor';
-import { videoPlayerPage } from './videoPlayer.po';
-import { qbankPage } from './qbank.po';
-import { javascriptPage } from './javascript.po';
+"use strict";
+var login_po_1 = require('./login.po');
+var qbankHome_po_1 = require('./qbankHome.po');
+var protractor_1 = require('protractor');
+var videoPlayer_po_1 = require('./videoPlayer.po');
+var qbank_po_1 = require('./qbank.po');
+var javascript_po_1 = require('./javascript.po');
 var fs = require('fs');
-var test = require('npm-publish-check');
-
 describe('qbankHomeTest', function () {
     var testName = this.getFullName();
-
-    let login: loginPage;
-    let qbankHome: qbankHomePage;
-    let videoPlayer: videoPlayerPage;
-    let qbank: qbankPage;
-    let jPage: javascriptPage;
-
+    var login;
+    var qbankHome;
+    var videoPlayer;
+    var qbank;
+    var jPage;
     beforeEach(function () {
-        login = new loginPage();
-        qbankHome = new qbankHomePage();
-        videoPlayer = new videoPlayerPage();
-        qbank = new qbankPage();
-        jPage = new javascriptPage();
+        login = new login_po_1.loginPage();
+        qbankHome = new qbankHome_po_1.qbankHomePage();
+        videoPlayer = new videoPlayer_po_1.videoPlayerPage();
+        qbank = new qbank_po_1.qbankPage();
+        jPage = new javascript_po_1.javascriptPage();
     });
-
     it('verifyScrollingAndHeaderNavigationWorkTogether', function () {
         //  pending('Force skip');
         login.logInWithProductCode('SHIELD');
-        
     });
-
     it('verifyResponsiveMenuAppears', function () {
         login.logInWithProductCode('SHIELD');
-        browser.driver.manage().window().setSize(320, 480);
+        protractor_1.browser.driver.manage().window().setSize(320, 480);
         qbankHome.goToQBankHome();
-
         qbankHome.hamburgerMenuIsVisible().then(function (txt) {
             console.log('before print');
             console.log(txt);
@@ -42,85 +35,67 @@ describe('qbankHomeTest', function () {
         console.log('after test');
         expect(qbankHome.hamburgerMenuIsVisible()).toBe(false, 'hamburger menu visible test failed');
     });
-
     it('test function', function () {
         console.log('test function');
     });
-
     it('verifyAnswerChoiceContentItemsDisplayedInItemReviewSection', function () {
         login.logInWithProductCode('SHIELD');
         qbankHome.goToQBankHome();
-        browser.manage().addCookie('atom.web.fakes',
-            'GET={"/api/qbank/jasper/content/preview/286663/1":"http://qa-atom-support.kaptest.com/Atom/json/api/jasper/content/preview/NewJSONFormat/QBank_AllContentItems.json"}');
-        browser.sleep(5000);
+        protractor_1.browser.manage().addCookie('atom.web.fakes', 'GET={"/api/qbank/jasper/content/preview/286663/1":"http://qa-atom-support.kaptest.com/Atom/json/api/jasper/content/preview/NewJSONFormat/QBank_AllContentItems.json"}');
+        protractor_1.browser.sleep(5000);
         expect(qbankHome.reviewContentItem('286663', '1')).toBe(true, 'Answer choice display after override');
-        browser.sleep(5000);
-
+        protractor_1.browser.sleep(5000);
     });
-
     it('verifyVideoSpeed', function () {
         login.logInWithProductCode('SHIELD');
-        browser.sleep(3000);
+        protractor_1.browser.sleep(3000);
         expect(videoPlayer.orientationVideoIsDisplayed()).toBe(true, 'video player displayed on homepage');
         videoPlayer.clickInitialPlayInVideoPlayer();
-        browser.sleep(1000);
+        protractor_1.browser.sleep(1000);
         videoPlayer.clickVideoSpeedButton_Relative('1.5x');
-        browser.sleep(2000);
+        protractor_1.browser.sleep(2000);
         videoPlayer.clickMaximizeMinimizeButton();
-        browser.sleep(2000);
+        protractor_1.browser.sleep(2000);
         videoPlayer.clickMaximizeMinimizeButton();
-        browser.sleep(1000);
+        protractor_1.browser.sleep(1000);
         videoPlayer.clickPauseInVideoPlayer();
-        browser.sleep(2000);
+        protractor_1.browser.sleep(2000);
         videoPlayer.dragScrubBarToPercent_1(100.0);
-        browser.sleep(3000);
+        protractor_1.browser.sleep(3000);
     });
-
     it('assertTextCanBehigHighlighted', function () {
         login.logInWithProductCode('SHIELD');
-        browser.sleep(3000);
+        protractor_1.browser.sleep(3000);
         qbankHome.clickCreateQBank();
-        browser.sleep(10000);
+        protractor_1.browser.sleep(10000);
         qbank.highlightText();
-        browser.sleep(1000);
+        protractor_1.browser.sleep(1000);
         qbank.getHighlightedText();
-        browser.sleep(5000);
-
+        protractor_1.browser.sleep(5000);
     });
-
     it('takeScreenShotOnFailure', function () {
         login.logInWithProductCode('SHIELD');
-        browser.driver.manage().window().setSize(320, 480);
+        protractor_1.browser.driver.manage().window().setSize(320, 480);
         qbankHome.goToQBankHome();
         expect(qbankHome.hamburgerMenuIsVisible()).toBe(false, 'hamburger menu visible test failed');
     });
-
-    it('automateTestUIwithNgTags', function () {
+    fit('automateTestUIwithNgTags', function () {
         console.log(testName);
         login.logInWithProductCode('SHIELD');
-        browser.sleep(3000);
+        protractor_1.browser.sleep(3000);
         qbankHome.clickCreateQBank();
-        browser.sleep(5000);
+        protractor_1.browser.sleep(5000);
         qbank.selectAnswer(0);
-        browser.sleep(3000);
+        protractor_1.browser.sleep(3000);
         qbank.markQuestion();
-        browser.sleep(3000);
+        protractor_1.browser.sleep(3000);
         qbank.getQuestionId().then(function (text) {
             console.log(text);
         });
     });
-
     it('function Overload test', function () {
-     //   jPage.functionOverload();
-
+        //   jPage.functionOverload();
     });
-
-fit('npm publish test', ()=> {
-    console.log('before check');
-    test.printMessageJS();
-   // test.printMessageTS();
-
-})
     afterEach(function () {
         /*
         
@@ -136,5 +111,5 @@ fit('npm publish test', ()=> {
                 stream.end();
             }); */
     });
-
 });
+//# sourceMappingURL=qbankHome-spec.js.map

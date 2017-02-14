@@ -4,7 +4,7 @@ var loginPage = (function () {
     function loginPage() {
     }
     loginPage.prototype.logInWithProductCode = function (productCode) {
-        protractor_1.browser.ignoreSynchronization = true;
+        //  browser.ignoreSynchronization = true;
         this.loginWithKecAccount();
         protractor_1.browser.wait(protractor_1.protractor.ExpectedConditions.elementToBeClickable(protractor_1.element(protractor_1.by.id('ProductCode'))), 10000);
         protractor_1.element(protractor_1.by.id('ProductCode')).sendKeys(productCode);
