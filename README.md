@@ -1,31 +1,23 @@
 # ProtractorLearning
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.17.
+This project was created for Protractor learning, generated using Angular CLI.
 
-## Development server
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Prerequisite
+You need to have Git installed in your machine.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/). 
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Deploying to Github Pages
-
-Run `ng github-pages:deploy` to deploy to Github Pages.
-
-## Further help
-
-To get more help on the `angular-cli` use `ng --help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Software required
+* Nodejs
+  * download [nodejs](https://nodejs.org/en/download/).
+  * if you have brew use command `brew install node`
+* Protractor
+  * To install globally `npm install -g protractor` otherwise `npm install protractor` use it in specific directory
+* Selenium WebDriver
+  * To update/get Selenium Webdriver `webdriver-manager update`
+* Typescript
+  * To install globally `npm install -g typescript` otherwise `npm install typescript` use it in specific directory
+* VS Code IDE
+  * download [vs code](https://code.visualstudio.com/download).
+  
+## To use this project
+* Clone this repository using git commancd `git clone https://github.com/KTPYoga/Protractor-Learning.git`
+* Open the project in VS code. (you can use `code .` to open current directory in code)
