@@ -2,22 +2,25 @@
 // https://github.com/angular/protractor/blob/master/docs/referenceConf.js
 
 /*global jasmine */
-//var SpecReporter = require('jasmine-spec-reporter');
-
+let SpecReporter = require('jasmine-spec-reporter').SpecReporter;
+const reporters = require('jasmine-reporters');
 exports.config = {
   allScriptsTimeout: 11000,
   noResolve: false,
-  specs: [
-     './e2e/**/channelPageTest-spec.ts'
-    //'./e2e/**/qbankHome-spec.ts'
- // './e2e/**/qbankHome-spec.js'
- //'./e2e/**/javascript.check.js'
-  ],
+  suites: {
+    smoke: './e2e/**/fail-spec.ts'
+  },
+//   specs: [
+//     // './e2e/**/channelPageTest-spec.ts'
+//     './e2e/**/fail-*.ts'
+//  // './e2e/**/qbankHome-spec.js'
+//  //'./e2e/**/javascript.check.js'
+//   ],
   capabilities: {
     'browserName': 'chrome'
   },
   directConnect: true,
-  //chromeDriver: "node_modules/chromedriver/bin/chromedriver",
+  chromeDriver: "node_modules/chromedriver/bin/chromedriver",
  // baseUrl: 'http://localhost:4200/',
   framework: 'jasmine2',
   jasmineNodeOpts: {
@@ -31,6 +34,8 @@ exports.config = {
       project: 'e2e'
     });
   },
+//displayStacktrace: 'specs',
+
   //plugins: [{
        // package: 'protractor-screenshoter-plugin',
        // screenshotPath:'./reports',
@@ -40,10 +45,18 @@ exports.config = {
        // writeReportFreq: 'asap',
        // clearFoldersBeforeTest: true,
      // }],  
-  onPrepare: function() {
-     // returning the promise makes protractor wait for the reporter config before executing tests 
-        return global.browser.getProcessedConfig().then(function (config) {
+  // onPrepare: function() {
+  //    // returning the promise makes protractor wait for the reporter config before executing tests 
+  //       return global.browser.getProcessedConfig().then(function (config) {
  
-        });
+  //       });
+  //}
+  onPrepare: function () {
+    jasmine.getEnv().addReporter(new SpecReporter({
+      spec: {
+        displayStacktrace: true
+      }
+    }));
+    jasmine.getEnv().addReporter(new reporters.TeamCityReporter());
   }
 };

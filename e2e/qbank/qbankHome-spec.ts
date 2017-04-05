@@ -6,6 +6,7 @@ import { qbankPage } from './qbank.po';
 import { javascriptPage } from './javascript.po';
 var fs = require('fs');
 var test = require('npm-publish-check');
+//import {printMessage} from 'npm-publish-check';
 
 describe('qbankHomeTest', function () {
     var testName = this.getFullName();
@@ -115,12 +116,24 @@ describe('qbankHomeTest', function () {
 
     });
 
-fit('npm publish test', ()=> {
+it('npm publish test', ()=> {
     console.log('before check');
     test.printMessageJS();
    // test.printMessageTS();
-
 })
+
+fit('npm failure test', ()=> {
+    console.log('fail');
+    browser.sleep(2000);
+    test.wer();
+    
+})
+fit('npm failure test', ()=> {
+    console.log('works');
+    browser.sleep(2000);
+    
+})
+
     afterEach(function () {
         /*
         
