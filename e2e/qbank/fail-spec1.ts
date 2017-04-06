@@ -1,6 +1,6 @@
 import { loginPage } from './login.po';
 import { qbankHomePage } from './qbankHome.po';
-import { browser } from 'protractor';
+import { browser, element, by } from 'protractor';
 import { videoPlayerPage } from './videoPlayer.po';
 import { qbankPage } from './qbank.po';
 import { javascriptPage } from './javascript.po';
@@ -18,23 +18,21 @@ describe('WorkSpec', function () {
     let jPage: javascriptPage;
 
     beforeEach(function () {
-        login = new loginPage();
-        qbankHome = new qbankHomePage();
-        videoPlayer = new videoPlayerPage();
-        qbank = new qbankPage();
-        jPage = new javascriptPage();
+        browser.ignoreSynchronization=true;
     });
 
-it('npm working test', ()=> {
-    console.log('works from work');
-    browser.sleep(2000);
-    //  expect.apply(3).toBe(5);
+it('kaptest pass test', ()=> {
+    browser.get("https://www.kaptest.com");
+    browser.sleep(5000);
+    element(by.css('#content > div.home > div.header.hidden-xs > div > div > div.col-sm-9.col-md-8 > div > div:nth-child(1) > a')).click();
+    browser.sleep(3000);
 })
 
-it('npm working fail test', ()=> {
-    console.log('fail from work');
-    browser.sleep(2000);
-    expect.apply(3).toBe(2);
+it('kaptest fail test', ()=> {
+    browser.get("https://www.kaptest.com");
+    browser.sleep(5000);
+    element(by.css('#content > div.test > div.header.hidden-xs > div > div > div.col-sm-9.col-md-8 > div > div:nth-child(1) > a')).click();
+    browser.sleep(3000);
 })
     
 

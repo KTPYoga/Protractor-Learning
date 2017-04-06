@@ -28,7 +28,7 @@ function filterArgs(protractorArgs) {
     if (status === 0) {
       callback(status);
     } else {
-      if (++testAttempt <= 3) {
+      if (++testAttempt <= 2) {
         process.stdout.write(`\nUsing standard parser to parse output\n`)
         var failedSpecs = parse(output)
 

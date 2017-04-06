@@ -1,6 +1,6 @@
 import { loginPage } from './login.po';
 import { qbankHomePage } from './qbankHome.po';
-import { browser } from 'protractor';
+import { browser, element, by } from 'protractor';
 import { videoPlayerPage } from './videoPlayer.po';
 import { qbankPage } from './qbank.po';
 import { javascriptPage } from './javascript.po';
@@ -18,25 +18,23 @@ describe('FailSpec', function () {
     let jPage: javascriptPage;
 
     beforeEach(function () {
-        login = new loginPage();
-        qbankHome = new qbankHomePage();
-        videoPlayer = new videoPlayerPage();
-        qbank = new qbankPage();
-        jPage = new javascriptPage();
+        browser.ignoreSynchronization =true;
     });
 
    
 
 
-it('npm failure test', ()=> {
-    console.log('fail from failure');
-    browser.sleep(2000);
-    test.wer();
-    
+it('google pass test', ()=> {
+    browser.get("https://www.google.com");
+    browser.sleep(3000);
+    element(by.name('q')).sendKeys('pass test');
+    browser.sleep(3000);
 })
-it('npm pass test', ()=> {
-    console.log('pass from failure');
-    browser.sleep(2000);
+it('google fail test', ()=> {
+    browser.get("https://www.google.com");
+    browser.sleep(3000);
+    element(by.name('textbox')).sendKeys('pass test');
+    browser.sleep(3000);
     
 })
     

@@ -8,7 +8,7 @@ exports.config = {
   allScriptsTimeout: 11000,
   noResolve: false,
   suites: {
-    smoke: './e2e/**/fail-spec.ts'
+    smoke: './e2e/**/fail-*.ts'
   },
 //   specs: [
 //     // './e2e/**/channelPageTest-spec.ts'
