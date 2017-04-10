@@ -2,6 +2,9 @@
 
 [ -z "$SELENIUM_SERVER_NAME" ] && SELENIUM_SERVER_NAME="selenium-server"
 
+#install protractor
+npm install
+
 # Remove but don't fail if it doesn't exist 
 docker rm -f $SELENIUM_SERVER_NAME || true
 
