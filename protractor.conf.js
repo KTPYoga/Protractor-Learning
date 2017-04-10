@@ -21,7 +21,7 @@ exports.config = {
     'browserName': 'chrome'
   },
  // directConnect: true,
-  chromeDriver: "node_modules/chromedriver/bin/chromedriver",
+  //chromeDriver: "node_modules/chromedriver/bin/chromedriver",
  // baseUrl: 'http://localhost:4200/',
   framework: 'jasmine2',
   jasmineNodeOpts: {
