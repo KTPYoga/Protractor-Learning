@@ -9,7 +9,7 @@ npm install
 docker rm -f $SELENIUM_SERVER_NAME || true
 
 # Start container for selenium server in background on host network
-docker run -d --name $SELENIUM_SERVER_NAME selenium/standalone-chrome
+docker run -d -p 4444:4444 --name $SELENIUM_SERVER_NAME selenium/standalone-chrome
 
 #run protractor/flake test
 npm run flake
