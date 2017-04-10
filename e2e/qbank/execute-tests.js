@@ -102,13 +102,13 @@ function parse(output) {
 var protractor = (0, _child_process.spawn)('node', protractorArgs, []);
 
     protractor.stdout.on('data', (buffer) => {
-      let text = buffer.toString();
+      var text = buffer.toString();
       process.stdout.write(text);
       output = output + text;
     })
 
     protractor.stderr.on('data', (buffer) => {
-      let text = buffer.toString();
+      var text = buffer.toString();
       process.stderr.write(text);
       output = output + text;
     })
