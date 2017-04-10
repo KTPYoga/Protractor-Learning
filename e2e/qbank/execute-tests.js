@@ -1,5 +1,4 @@
 var _child_process = require('child_process');
-require('core-js/shim');
 var _path = require('path');
 
 function execute() {
