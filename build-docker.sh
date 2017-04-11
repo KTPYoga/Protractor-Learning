@@ -5,6 +5,9 @@
 #install protractor
 npm install
 
+webdriver-manager update
+webdriver-manager start
+
 # Remove but don't fail if it doesn't exist 
 docker rm -f $SELENIUM_SERVER_NAME || true
 
