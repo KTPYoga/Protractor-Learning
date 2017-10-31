@@ -53,3 +53,27 @@ git push -u origin feature/1.05
 git commit --amend (to update last commit message)
 
 
+----------------------------------------------------------
+
+
+TESTUI promote to QA steps 
+*****************************
+
+
+DELETE LOCAL AND REMOTE BRANCH
+
+$ git push origin --delete <branch_name>
+$ git branch -d <branch_name>
+Delete Local Branch
+-D
+might be neccesary
+
+ 
+$ git tag -d vx.x.x
+$ git push origin :refs/tags/v.x.x
+
+run jenkins job with tag v.x.x 
+create feature branch in pipeline to update testUI tag version
+run jenkins QA deplay job with selecting testui release branch
+
+
